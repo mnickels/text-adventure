@@ -3,3 +3,4 @@ Paul is editing this test file for the purpose of testing.
 Michael is editing this in Eclipse.
 Here is another edit from Eclipse (to make sure I didn't just get lucky).
 Edit from Git to make sure I can pull it to Eclipse.
+It worked!!
