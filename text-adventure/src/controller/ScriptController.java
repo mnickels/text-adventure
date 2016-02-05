@@ -11,13 +11,13 @@ import java.util.Scanner;
  */
 public class ScriptController {
 	
-	Scanner loader;
+	private final ScriptLoader loader;
 
 	/**
 	 * 
 	 */
 	public ScriptController() {
-		loader = new Scanner();
+		loader = new ScriptLoader();
 	}
 
 }
