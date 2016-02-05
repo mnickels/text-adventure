@@ -1,11 +1,13 @@
 /*
- * Text Adventure game
- * developed by
- * Patrick
- * Paul
- * Mike
+ * HuSCII Coding Club
+ * 
+ * Steampunk Text-Based Adventure Game
+ * 
+ * created by (in no particular order)
+ * Mike Nickels
+ * Patrick Cruz
+ * Big Paul
  */
-
 package model;
 
 /**
