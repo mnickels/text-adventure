@@ -8,14 +8,18 @@
  * Patrick Cruz
  * Big Paul
  */
-package controller;
+package model;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.Script;
-
+/**
+ * 
+ * 
+ * @author Mike Nickels
+ * @version 0.1
+ */
 public class ScriptLoader {
 	
 	public static final String[] SCRIPT_NAMES = {

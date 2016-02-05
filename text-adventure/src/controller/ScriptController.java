@@ -12,6 +12,8 @@ package controller;
 
 import java.util.Scanner;
 
+import model.ScriptLoader;
+
 /**
  * @author Mike
  *
