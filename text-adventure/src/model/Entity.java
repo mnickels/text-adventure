@@ -29,7 +29,7 @@ public class Entity {
 	private EntityClass classification;
 
 	/**
-	 * 
+	 * Constructor for the Entity class.
 	 */
 	public Entity(String name) {
 		this.name = name;

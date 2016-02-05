@@ -31,6 +31,7 @@ public class Script {
 		linePointer = 0;
 	}
 	
+	
 	/**
 	 * Gets the next line to run.
 	 * 
