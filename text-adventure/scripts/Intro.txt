@@ -1,3 +1,21 @@
-For years, the land of Zanderville thrived in peace and prosperity. All was well until the [bad guys] invaded. Now, it is up to
-our hero to bring justice to Zanderville.
-
+//This is the introductory text for the start of the game.
+For years, the land of Zanderville thrived in peace and prosperity. All was well until the [bad guys invaded. Now, it is up to our hero to bring justice to Zanderville. Our hero's tale begins here, in the city capital known as [City Name].
+A man rushes in your direction, bumping into you as he frantically makes way for that sketchy looking alleyway over yonder.
+[NPC NAME]: "Help! I've been bamboozled! That man stole my something or other!"
+Being the main character of our story, you immediately chase after the man and find him cornered. 
+What will you do?
+@ Negotiate with him | -> 10
+@ Give him the ole' nutcracker | -> 15
+You approach him And try to coerce him into making better life choices.
+# p.morality += 2
+He responds with a pathetic jab. You lose 2 health.
+# p.health -= 2
+You fight back and defend yourself.
+-> 18
+You give the thug a fierce kick where the sun don't shine. A low blow indeed.
+p.morality -= 2
+-> 18
+The thug falls unconcious. You gain 5 exp and 20 coal credits.
+# p.exp += 5
+# p.credits += 20
+//NOT DONE YET
