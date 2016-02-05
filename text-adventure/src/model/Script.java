@@ -1,13 +1,3 @@
-/*
- * HuSCII Coding Club
- * 
- * Steampunk Text-Based Adventure Game
- * 
- * created by (in no particular order)
- * Mike Nickels
- * Patrick Cruz
- * Big Paul
- */
 package model;
 
 import java.io.File;
@@ -16,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Holds the data for the game's script and reads through it.
+ * @author Mike Nickels
+ *
+ */
 public class Script {
 	
 	private int linePointer;
