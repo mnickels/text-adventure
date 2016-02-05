@@ -4,17 +4,20 @@ A man rushes in your direction, bumping into you as he frantically makes way for
 [NPC NAME]: "Help! I've been bamboozled! That man stole my something or other!"
 Being the main character of our story, you immediately chase after the man and find him cornered. 
 What will you do?
-@ Negotiate with him | -> 10
-@ Give him the ole' nutcracker | -> 15
+@ Negotiate with him | -> lineNegotiate
+@ Give him the ole' nutcracker | -> lineKick
+# lineNegotiate
 You approach him And try to coerce him into making better life choices.
 # p.morality += 2
 He responds with a pathetic jab. You lose 2 health.
 # p.health -= 2
 You fight back and defend yourself.
--> 18
+-> lineThugDown
+# lineKick
 You give the thug a fierce kick where the sun don't shine. A low blow indeed.
 p.morality -= 2
--> 18
+-> lineThugDown
+# lineThugDown
 The thug falls unconcious. You gain 5 exp and 20 coal credits.
 # p.exp += 5
 # p.credits += 20
