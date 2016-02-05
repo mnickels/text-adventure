@@ -34,5 +34,15 @@ public class ScriptLoader {
 			SCRIPTS.put(s, new Script(new File(s)));
 		}
 	}
+	
+	/**
+	 * Returns the Script with the given file name.
+	 * 
+	 * @param name File name. 
+	 * @return Script with given file name.
+	 */
+	public Script getScript(String name) {
+		return SCRIPTS.get(name);
+	}
 
 }
