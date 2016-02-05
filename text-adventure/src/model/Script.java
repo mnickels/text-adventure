@@ -44,6 +44,7 @@ public class Script {
 		}
 	}
 	
+	
 	/**
 	 * Gets the next line to run.
 	 * 
