@@ -22,8 +22,10 @@ import java.util.Map;
  */
 public class ScriptLoader {
 	
+	private static final String EXTENSION = ".txt";
+	
 	public static final String[] SCRIPT_NAMES = {
-			"Intro.txt"
+			"Intro"
 	};
 	
 	public final Map<String, Script> SCRIPTS;
@@ -31,7 +33,7 @@ public class ScriptLoader {
 	public ScriptLoader() {
 		SCRIPTS = new HashMap<String, Script>();
 		for (String s : SCRIPT_NAMES) {
-			SCRIPTS.put(s, new Script(new File(s)));
+			SCRIPTS.put(s, new Script(new File(s + EXTENSION)));
 		}
 	}
 	
