@@ -1,1 +1,59 @@
-Script pls
+// Script syntax
+
+	  // whitespaces don't matter anywhere
+
+General Output
+doesn't need a delimeter
+each line will have slight delay before it is displayed
+and the player will be able to scroll back to see previous text, so don't worry about line length
+
+// Global static variables
+// these are variables that your script did not instantiate
+// Player variable
+#p
+// current line number
+#line
+// input
+#in
+
+// GOTO statement
+-> 4
+-> #line - 6
+-> #line + 10
+
+// Local variables
+$<varName>,<parameters for Entity constructor delimited by commas>
+
+// Entity field accessors
+#p.health
+$<varName>.<fieldKey>
+
+// Entity field Keys
+health // the health of the entity
+attack // the attack of the entity
+// etc...
+
+// Player input buttons
+// (usually input buttons are preceded by a prompt of some sort, which is just general output text
+@ button text | <what to do after button has been pressed>
+@ button text | <what to do after this button has been pressed>
+...
+// concluded by a line that starts with no delimiter or any other delimiter than @
+
+// Conditional statement
+:if
+-AND condition
+~OR condition
+*<true case>
+*<true case>
+!<false case>
+!<false case>
+
+// example: (tabs are optional, so is whitespace after ~ and * and !
+:if
+	- #p.health > 0
+	- $o.health > 0
+	* p.health -= 2
+	* -> #line - 4
+	! Someone died!
+continue with script
