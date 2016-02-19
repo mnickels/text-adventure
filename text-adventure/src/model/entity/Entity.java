@@ -22,7 +22,7 @@ public class Entity {
 	
 	private Stats stats;
 	
-	private double morality;
+	private Morality morality;
 	
 	private EntityRace race;
 	
