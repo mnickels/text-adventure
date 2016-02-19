@@ -8,7 +8,7 @@
  * Patrick Cruz
  * Big Paul
  */
-package model;
+package model.entity;
 
 /**
  * @author Mike
