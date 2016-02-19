@@ -20,7 +20,7 @@ import model.ScriptLoader;
 public class ScriptController {
 	
 	public static final String[] keywords = {
-		"->", ":", "-", "~", "*", "!", "@"
+		"->", ":", "-", "~", "*", "!", "@", "$"
 	};
 	
 	private final ScriptLoader loader;
@@ -45,11 +45,19 @@ public class ScriptController {
 				case "->":
 					
 				case ":":
+					
 				case "-":
+					
 				case "~":
+					
 				case "*":
+					
 				case "!":
+					
 				case "@":
+					
+				case "$":
+					
 				default:
 					System.out.println(currentLine);
 					currentLineNumber++;
