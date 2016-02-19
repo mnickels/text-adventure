@@ -18,8 +18,9 @@ package model.entity;
  */
 public class Entity {
 	
+	/** The name of this Entity. */
 	private final String name;
-	
+	/** This Entity's Stats. */
 	private Stats stats;
 	
 	private Morality morality;

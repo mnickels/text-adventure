@@ -11,10 +11,16 @@
 package model.entity;
 
 /**
- * @author Mike
- *
+ * Holds the Stats values for Entities.
+ * 
+ * @author Mike Nickels
+ * @version 0.1
  */
 public class Stats {
+	
+	public enum Stat {
+		HEALTH, ATTACK, DEFENSE, SPEED, LEVEL
+	}
 	
 	private int maxHealth;
 	private int maxAtk;
@@ -28,18 +34,35 @@ public class Stats {
 	
 	private int level;
 	private double xp;
-	
-	private double morality;
 
-	/**
-	 * 
-	 */
+	private EntityRace race;
+	private EntityClass eClass;
+	
+	
+	
 	public Stats(EntityRace r, EntityClass c) {
-		
+		race = r;
+		eClass = c;
 	}
 	
-	public Stats(Stats s, EntityRace r, EntityClass c) {
-		
+	public void changeClass(EntityClass c) {
+		eClass = c;
+	}
+	
+	public int getStat(Stat s) {
+		switch (s) {
+		case HEALTH:
+			return health;
+		case ATTACK:
+			return attack;
+		case DEFENSE:
+			return defense;
+		case SPEED:
+			return speed;
+		case LEVEL:
+			return level;
+		}
+		return -1;
 	}
 
 }

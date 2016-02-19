@@ -1,8 +1,24 @@
+/*
+ * HuSCII Coding Club
+ * 
+ * Steampunk Text-Based Adventure Game
+ * 
+ * created by (in no particular order)
+ * Mike Nickels
+ * Patrick Cruz
+ * Big Paul
+ */
 package model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Holds the moral value of an Entity.
+ * 
+ * @author Mike Nickels
+ * @version 0.1
+ */
 public class Morality implements Comparable<Morality> {
 	
 	/** Minimum moral quality. */
