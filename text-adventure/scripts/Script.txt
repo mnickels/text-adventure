@@ -13,6 +13,8 @@ and the player will be able to scroll back to see previous text, so don't worry 
 #p
 // current line number
 #line
+// input
+#in
 
 // GOTO statement
 -> 4
