@@ -41,10 +41,17 @@ public class Morality implements Comparable<Morality> {
 	/** The morality level  */
 	private double morality;
 
+	/**
+	 * Creates a neutral Morality.
+	 */
 	public Morality() {
 		this(NEUTRAL);
 	}
 	
+	/**
+	 * Creates a Morality with the specified initial moral level.
+	 * @param initialLevel the initial moral level of this Morality.
+	 */
 	public Morality(final double initialLevel) {
 		if (initialLevel < MINIMUM) morality = MINIMUM;
 		else if (initialLevel > MAXIMUM) morality = MAXIMUM;
@@ -54,6 +61,10 @@ public class Morality implements Comparable<Morality> {
 		decisions.add(morality);
 	}
 	
+	/**
+	 * Adds the moral value of the Morality provided to this Morality.
+	 * @param m the Morality of the decision being made.
+	 */
 	public void makeDecision(Morality m) {
 		decisions.add(m.morality);
 		// TODO make this a sum of ALL decisions
