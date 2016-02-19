@@ -18,6 +18,10 @@ import model.ScriptLoader;
  */
 public class ScriptController {
 	
+	public static final String[] keywords = {
+		"->", ":", "-", "~", "*", "!", "@"
+	};
+	
 	private final ScriptLoader loader;
 
 	/**
@@ -25,6 +29,10 @@ public class ScriptController {
 	 */
 	public ScriptController() {
 		loader = new ScriptLoader();
+	}
+	
+	public void runScripts() {
+		
 	}
 
 }

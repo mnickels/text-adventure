@@ -23,7 +23,7 @@ import java.util.Map;
 public class ScriptLoader {
 	
 	public static final String[] SCRIPT_NAMES = {
-			
+			"Intro.txt"
 	};
 	
 	public final Map<String, Script> SCRIPTS;
