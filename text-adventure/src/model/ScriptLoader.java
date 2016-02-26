@@ -33,7 +33,7 @@ public class ScriptLoader {
 	public ScriptLoader() {
 		SCRIPTS = new HashMap<String, Script>();
 		for (String s : SCRIPT_NAMES) {
-			SCRIPTS.put(s, new Script(new File(s + EXTENSION)));
+			SCRIPTS.put(s, new Script(new File("scripts/" + s + EXTENSION)));
 		}
 	}
 	

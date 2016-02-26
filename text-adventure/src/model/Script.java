@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import model.scriptcomponent.ScriptComponent;
+
 /**
  * Holds the data for the game's script and reads through it.
  * @author Mike Nickels
@@ -25,7 +27,7 @@ import java.util.Scanner;
  */
 public class Script {
 	
-	private final List<String> lines;
+	private final List<ScriptComponent> components;
 	
 	private final Map<String, Integer> labelToLineNumber;
 	
@@ -37,7 +39,7 @@ public class Script {
 	 * @param scriptFile the Script File.
 	 */
 	public Script(File scriptFile) {
-		lines = new ArrayList<String>();
+		components = new ArrayList<ScriptComponent>();
 		labelToLineNumber = new HashMap<String, Integer>();
 		currentIndex = 0;
 		readFile(scriptFile);
@@ -55,33 +57,36 @@ public class Script {
 			throw new IllegalArgumentException("Null script file.");
 		}
 		try {
+			List<String> lines = new ArrayList<String>();
 			Scanner s = new Scanner(f);
 			while (s.hasNextLine()) {
 				lines.add(s.nextLine());
 			}
 			s.close();
+			removeComments(lines);
+			fillLabels(lines);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			// Does not throw if the file can't be found, so WILL create an empty Script object
 		}
 	}
 	
-	private void removeComments() {
-		lines.removeIf(line -> line.startsWith(Keyword.COMMENT.getKey()));
+	private void removeComments(List<String> script) {
+		script.removeIf(line -> line.startsWith(Keyword.COMMENT.getKey()));
 	}
 	
 	/**
 	 * 
 	 */
-	private void fillLabels() {
-		int currentSize = lines.size();
+	private void fillLabels(List<String> script) {
+		int currentSize = script.size();
 		for (int i = 0; i < currentSize; i++) {
-			String line = lines.get(i);
+			String line = script.get(i);
 			if (line.startsWith(Keyword.LABEL.getKey())) {
 				// This line is a Label
 				String[] words = line.split(" ");
 				labelToLineNumber.put(words[1], i);
-				lines.remove(i--);
+				components.remove(i--);
 				currentSize--;
 			}
 		}
@@ -93,9 +98,9 @@ public class Script {
 	 * @return the current line.
 	 */
 	public String nextLine() {
-		if (currentIndex < lines.size()) {
+		if (currentIndex < components.size()) {
 			//return lines.get(linePointer++);
-			return lines.get(currentIndex++);
+			return components.get(currentIndex++);
 		}
 		return null;
 	}
@@ -115,7 +120,7 @@ public class Script {
 	 * @return The last line of this Script.
 	 */
 	public int lastLine() {
-		return lines.size();
+		return components.size();
 	}
 
 }
