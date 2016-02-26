@@ -4,35 +4,35 @@ A man rushes in your direction, bumping into you as he frantically makes way for
 Frazzled Woman: "Help! I've been bamboozled! That man stole my something or other!"
 Being the main character of our story, you immediately chase after the man and find him cornered. 
 What will you do?
-@ Negotiate with him | -> $ lineNegotiate
-@ Give him the ole' nutcracker | -> $ lineKick
-$ lineNegotiate = # line
+@ Negotiate with him | -> lineNegotiate
+@ Give him the ole' nutcracker | -> lineKick
+% lineNegotiate
 You approach him And try to coerce him into making better life choices.
 # p.morality += 2
 He responds with a pathetic jab. You lose 2 health.
 # p.health -= 2
 You fight back and defend yourself.
--> $ lineThugDown
-$ lineKick = #line
+-> lineThugDown
+% lineKick
 You give the thug a fierce kick where the sun don't shine. A low blow indeed.
 # p.morality -= 2
--> $ lineThugDown
-$ lineThugDown = # line
+-> lineThugDown
+% lineThugDown
 The thug falls unconscious. You gain 5 exp and 20 coal credits.
 # p.exp += 5
 # p.credits += 20
 Inside the thug's trenchcoat, you find a purse containing 1000 coal credits. That's a lot of credits.
-@ Pocket half the credits | -> $ linePocketCreds
-@ Don't take any credits | -> $ lineDontSteal
-$ linePocketCreds = # line
+@ Pocket half the credits | -> linePocketCreds
+@ Don't take any credits | -> lineDontSteal
+% linePocketCreds
 You pocket 500 credits.
 # p.morality -= 2
 -> lineReturnPurse
-$ lineDontSteal = # line
+% lineDontSteal
 You resist the temptation.
 # p.morality += 2
--> lineReturnPurse = # line
-$ lineReturnPurse = # line
+-> lineReturnPurse
+% lineReturnPurse
 You make your way back to the frazzled woman and return her purse.
 Frazzled Woman: "My hero! Thank you for retrieving my stolen purse. Pray tell me; what is your name, kind stranger?"
 @ Enter your name | #p.name = # in

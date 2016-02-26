@@ -19,10 +19,6 @@ import model.ScriptLoader;
  */
 public class ScriptController {
 	
-	public static final String[] keywords = {
-		"->", ":", "-", "~", "*", "!", "@", "$"
-	};
-	
 	private final ScriptLoader loader;
 	
 	private Script currentScript;
@@ -38,7 +34,7 @@ public class ScriptController {
 		Script currentScript = loader.SCRIPTS.get("Intro");
 		int currentLineNumber = 0;
 		while (currentLineNumber != currentScript.lastLine()) {
-			String currentLine = currentScript.nextLine(currentLineNumber);
+			String currentLine = currentScript.nextLine();
 			String[] tokens = currentLine.split(" ");
 			
 			switch (tokens[0]) {
@@ -63,6 +59,10 @@ public class ScriptController {
 					currentLineNumber++;
 			}
 		}
+	}
+	
+	public void runScript(Script script) {
+		
 	}
 
 }
