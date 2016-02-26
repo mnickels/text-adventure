@@ -23,8 +23,6 @@ import java.util.Scanner;
  */
 public class Script {
 	
-	private int linePointer;
-	
 	private final List<String> lines;
 
 	public Script(File scriptFile) {
@@ -51,10 +49,15 @@ public class Script {
 	 * @return A String of steamScript. Returns null if the script has concluded running.
 	 */
 	public String nextLine(int lineNumber) {
-		if (lineNumber >= lines.size()) {
-			return lines.get(linePointer++);
+		if (lineNumber < lines.size()) {
+			//return lines.get(linePointer++);
+			return lines.get(lineNumber);
 		}
 		return null;
+	}
+	
+	public int lastLine() {
+		return lines.size();
 	}
 
 }
