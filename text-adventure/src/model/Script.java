@@ -29,8 +29,6 @@ public class Script {
 	
 	private final List<ScriptComponent> components;
 	
-	private final Map<String, Integer> labelToLineNumber;
-	
 	private int currentIndex;
 
 	/**
@@ -40,11 +38,8 @@ public class Script {
 	 */
 	public Script(File scriptFile) {
 		components = new ArrayList<ScriptComponent>();
-		labelToLineNumber = new HashMap<String, Integer>();
 		currentIndex = 0;
 		readFile(scriptFile);
-		removeComments();
-		fillLabels();
 	}
 	
 	/**
@@ -64,7 +59,11 @@ public class Script {
 			}
 			s.close();
 			removeComments(lines);
-			fillLabels(lines);
+
+			Map<Integer, String> lineNumberToLabel = new HashMap<Integer, String>();
+			fillLabels(lines, lineNumberToLabel);
+			
+			populateComponents(lines, lineNumberToLabel);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			// Does not throw if the file can't be found, so WILL create an empty Script object
@@ -78,16 +77,31 @@ public class Script {
 	/**
 	 * 
 	 */
-	private void fillLabels(List<String> script) {
+	private void fillLabels(List<String> script, Map<Integer, String> theLabels) {
 		int currentSize = script.size();
 		for (int i = 0; i < currentSize; i++) {
 			String line = script.get(i);
 			if (line.startsWith(Keyword.LABEL.getKey())) {
 				// This line is a Label
 				String[] words = line.split(" ");
-				labelToLineNumber.put(words[1], i);
+				theLabels.put(i, words[1]);
 				components.remove(i--);
 				currentSize--;
+			}
+		}
+	}
+	
+	private void populateComponents(List<String> lines, Map<Integer, String> labels) {
+		String label = null;
+		List<String> grouped = new ArrayList<String>();
+		grouped.add(lines.get(0));
+		for (int i = 1; i < lines.size(); i++) {
+			if (lines.get(i).startsWith(grouped.get(i).split(" ")[0])) {
+				grouped.add(lines.get(i));
+			} else {
+				switch (grouped.get(grouped.size() - 1).split(" ")[0]) {
+				
+				}
 			}
 		}
 	}
