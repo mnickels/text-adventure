@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import model.scriptcomponent.OutputComponent;
 import model.scriptcomponent.ScriptComponent;
 
 /**
@@ -66,9 +67,9 @@ public class Script {
 			s.close();
 			removeComments(lines);
 
-			Map<Integer, String> lineNumberToLabel = fillLabels(lines);
+//			Map<Integer, String> lineNumberToLabel = fillLabels(lines);
 			
-			populateComponents(lines, lineNumberToLabel);
+			populateComponents(lines);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			// Does not throw if the file can't be found, so WILL create an empty Script object
@@ -79,25 +80,25 @@ public class Script {
 		script.removeIf(line -> line.startsWith(Keyword.COMMENT.getKey()));
 	}
 	
-	/**
-	 * 
-	 */
-	private Map<Integer, String> fillLabels(List<String> script) {
-		Map<Integer, String> theLabels = new HashMap<Integer, String>();
-		int currentSize = script.size();
-		for (int i = 0; i < currentSize; i++) {
-			String line = script.get(i);
-			if (line.startsWith(Keyword.LABEL.getKey())) { //Check if line is a label
-				String[] words = line.split(" ");
-				theLabels.put(i, words[1]);
-				script.remove(i--); //Removes the label from the lines of script text
-				currentSize--;
-			}
-		}
-		return theLabels;
-	}
+//	/**
+//	 * 
+//	 */
+//	private Map<Integer, String> fillLabels(List<String> script) {
+//		Map<Integer, String> theLabels = new HashMap<Integer, String>();
+//		int currentSize = script.size();
+//		for (int i = 0; i < currentSize; i++) {
+//			String line = script.get(i);
+//			if (line.startsWith(Keyword.LABEL.getKey())) { //Check if line is a label
+//				String[] words = line.split(" ");
+//				theLabels.put(i, words[1]);
+////				script.remove(i--); //Removes the label from the lines of script text
+////				currentSize--;
+//			}
+//		}
+//		return theLabels;
+//	}
 	
-	private void populateComponents(List<String> lines, Map<Integer, String> labels) {
+	private void populateComponents(List<String> lines) {
 		
 //		if (labels.containsKey(i)) {
 //			component.addLabel(labels.get(i));
@@ -105,38 +106,87 @@ public class Script {
 		
 		List<String> grouped = new ArrayList<String>();
 		grouped.add(lines.get(0));
-		
+		List<Integer> lineNumbers = new ArrayList<Integer>();
+		lineNumbers.add(0);
+		Keyword prevKeyword = Keyword.getKeyword(lines.get(0).split(" ")[0]);
+		Keyword currKeyword;
 		for (int i = 1; i < lines.size(); i++) {
-			if (lines.get(i).startsWith(grouped.get(grouped.size() - 1).split(" ")[0])) {
+			currKeyword = Keyword.getKeyword(lines.get(i).split(" ")[0]);
+			if (prevKeyword == currKeyword) {
+				// current line keyword matches previous line keyword
+				lineNumbers.add(i);
 				grouped.add(lines.get(i));
 			} else {
-				switch (grouped.get(grouped.size() - 1).split(" ")[0]) {
-					case Keyword.COMMENT.getKey():
-						System.out.println("You're an idiot!");
+				if (currKeyword == Keyword.OUTPUT_TEXT) {
+					// output text
+					grouped.add(lines.get(i));
+					lineNumbers.add(i);
+				} else {
+					// line keyword does not match previous, and not output text
+					// create components and pass in grouped, and the appropriate label string if applicable
+					
+					switch (prevKeyword) {
+					case GOTO:
 						break;
-					case Keyword.GOTO.getKey():
+					case IF:
 						break;
-					case Keyword.IF.getKey():
+					case CONDITION_AND:
 						break;
-					case Keyword.CONDITION_OR.getKey():
+					case CONDITION_OR:
 						break;
-					case Keyword.CONDITION_AND.getKey():
+					case BRANCH_TRUE:
 						break;
-					case Keyword.BRANCH_TRUE.getKey():
+					case BRANCH_FALSE:
 						break;
-					case Keyword.BRANCH_FALSE.getKey():
+					case INPUT_BUTTON:
 						break;
-					case Keyword.INPUT_BUTTON.getKey():
+					case REFERENCE_GLOBAL:
 						break;
-					case Keyword.REFERENCE_GLOBAL.getKey():
+					case REFERENCE_LOCAL:
 						break;
-					case Keyword.REFERENCE_LOCAL.getKey():
+					case OUTPUT_TEXT:
+						components.add(new OutputComponent(grouped));
 						break;
-					case Keyword.LABEL.getKey():
-						System.out.println("You're an idiot!");
+					case LABEL:
+						// TODO: jump to labels by creating a LabelComponent here
+						// then when we need to go to a label, run through components until instanceof LabelComponent
+						// then check the LabelComponent's string
 						break;
-					default:
+						default:
+					}
 				}
+				
+				
+//				switch (grouped.get(grouped.size() - 1).split(" ")[0]) {
+//					case Keyword.COMMENT.getKey():
+//						System.out.println("You're an idiot!");
+//						break;
+//					case Keyword.GOTO.getKey():
+//						break;
+//					case Keyword.IF.getKey():
+//						break;
+//					case Keyword.CONDITION_OR.getKey():
+//						break;
+//					case Keyword.CONDITION_AND.getKey():
+//						break;
+//					case Keyword.BRANCH_TRUE.getKey():
+//						break;
+//					case Keyword.BRANCH_FALSE.getKey():
+//						break;
+//					case Keyword.INPUT_BUTTON.getKey():
+//						break;
+//					case Keyword.REFERENCE_GLOBAL.getKey():
+//						break;
+//					case Keyword.REFERENCE_LOCAL.getKey():
+//						break;
+//					case Keyword.LABEL.getKey():
+//						System.out.println("You're an idiot!");
+//						break;
+//					default:
+//						// not a keyword line, so general output
+//						grouped.add(lines.get(i));
+//						break;
+//				}
 			}
 		}
 	}

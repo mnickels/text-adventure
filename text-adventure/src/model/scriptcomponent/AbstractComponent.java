@@ -10,20 +10,24 @@
  */
 package model.scriptcomponent;
 
+import java.util.List;
+
 /**
  * @author Mike Nickels
  * @version 0.1
  */
 public abstract class AbstractComponent implements ScriptComponent {
 
+	private final List<String> lines;
 	private final String label;
 	
-	protected AbstractComponent(String label) {
-		this.label = label;
+	protected AbstractComponent(List<String> lines) {
+		this(lines, "");
 	}
 	
-	protected AbstractComponent() {
-		this("");
+	protected AbstractComponent(List<String> lines, String label) {
+		this.label = label;
+		this.lines = lines;
 	}
 	
 	@Override

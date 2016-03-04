@@ -10,19 +10,22 @@
  */
 package model.scriptcomponent;
 
+import java.util.List;
+
 /**
  * @author Mike Nickels
  * @version 0.1
  */
 public class OutputComponent extends AbstractComponent {
+	
 
-	public OutputComponent(String label) {
-		super(label);
-		// TODO Auto-generated constructor stub
+
+	public OutputComponent(List<String> lines) {
+		this(lines, "");
 	}
 
-	public OutputComponent() {
-		// TODO Auto-generated constructor stub
+	public OutputComponent(List<String> lines, String label) {
+		super(lines, label);
 	}
 
 }
