@@ -1,0 +1,23 @@
+You accompany Baroness Brown to House Clemins.
+Baroness Browne: "Lord Clemins, this is #p.name. He stopped someone from stealing our important document stuff."
+Browne removes folders of papers and lays them on a table.
+Fancy Man: "Thank goodness. Your selfless courage has bought us time, #p.name. Surely, this meeting was destiny."
+Lord Clemins: "I am Lord Simeon Spolin Clemins of House Clemins."
+"For years, Dawnbourne and the rest of Arccairn have thrived in peace and harmony."
+"Despite this thriving tranquility, there are forces out there that wish to undermine the peace many have worked to maintain."
+"In recent months, the Nox clan have been scheming in secret to do bad stuff and take over our world. The documents you saved were stolen plans theirs."
+%lineTheQuestion
+"As I have said before, meetings such as this are destiny, and we would be forever grateful in having your hand to help save us from the Nox. Will you, #p.name?"
+@ My strength is yours. | -> lineYes
+@ I'd rather not, honestly.. | -> lineNo
+%lineYes
+Lord Clemins: "Thank you, noble #p.name!"
+-> lineStartMain
+%lineNo
+Lord Clemins: "Ah well, since you're the main hero of this game, you can't really say no. Them's the brakes, #p.name. Let's try that again."
+-> lineTheQuestion
+%lineStartMain
+"Go forth, #p.name, and save Arccairn!"
+#p.chapter = "Ch1"
+SCRIPT TownSquare
+%lineContinue

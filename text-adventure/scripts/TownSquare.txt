@@ -1,0 +1,23 @@
+#p.health = #p.max
+You return to the town square. What will you do?
+@ Visit the merchant | -> lineMerchant
+@ Visit the blacksmith | -> lineBlacksmith
+:if
+	& #p.lvl < 10
+	* @ Wander about the plains | SCRIPT RandomBattle.linePlains
+:if
+	& #p.lvl > 10
+	& #p.lvl < 20
+	* @ Wander into the caverns | SCRIPT RandomBattle.lineCaverns
+:if
+	& #p.lvl == 20
+	:if
+		& #p.morality >= 0
+		* @ Seek out Nox forces | SCRIPT RandomBattle.lineNox
+		! @ Hunt down royal guards | SCRIPT RandomBattle.lineRG
+@ Continue your quest | SCRIPT #p.ch.lineContinue
+%lineMerchant
+Carefree Merchant: "Welcome! how may I help you?"
+@ Potion (25C) | -> 
+%lineBlacksmith
+//TODO
