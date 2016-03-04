@@ -8,14 +8,12 @@
  * Patrick Cruz
  * Big Paul
  */
-package model;
+package model.scriptcomponent;
 
 /**
- * @author Mike
- *
+ * @author Mike Nickels
+ * @version 0.1
  */
-public enum EntityClass {
-	
-	
+public class IfComponent extends AbstractComponent {
 
 }

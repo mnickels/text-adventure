@@ -17,9 +17,10 @@ and the player will be able to scroll back to see previous text, so don't worry 
 #in
 
 // GOTO statement
--> 4
--> #line - 6
--> #line + 10
+-> <label>
+
+// Labels
+% <label>
 
 // Local variables
 $<varName>,<parameters for Entity constructor delimited by commas>

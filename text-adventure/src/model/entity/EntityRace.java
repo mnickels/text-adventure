@@ -8,11 +8,13 @@
  * Patrick Cruz
  * Big Paul
  */
-package model;
+package model.entity;
 
 /**
- * @author Mike
- *
+ * The Race of Entities.
+ * 
+ * @author Mike Nickels
+ * @version 0.1
  */
 public enum EntityRace {
 	

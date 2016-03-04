@@ -34,7 +34,7 @@ public class MainController implements Runnable {
 
 	@Override
 	public void run() {
-		
+		scripts.runScripts();
 	}
 
 }

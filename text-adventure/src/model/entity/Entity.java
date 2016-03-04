@@ -8,7 +8,7 @@
  * Patrick Cruz
  * Big Paul
  */
-package model;
+package model.entity;
 
 /**
  * Represents an entity, a living being in the game world.
@@ -18,11 +18,12 @@ package model;
  */
 public class Entity {
 	
+	/** The name of this Entity. */
 	private final String name;
-	
+	/** This Entity's Stats. */
 	private Stats stats;
 	
-	private double morality;
+	private Morality morality;
 	
 	private EntityRace race;
 	
