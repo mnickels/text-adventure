@@ -27,6 +27,15 @@ $<varName>,<parameters for Entity constructor delimited by commas>
 
 // Entity field accessors
 #p.health
+#p.potions
+#p.antidotes
+#p.ch (current chapter the player is on)
+#p.str (strength)
+#p.def
+#p.lvl
+#p.morality
+#p.credits (moolah)
+#p.equipment (an arraylist of equipment?)
 $<varName>.<fieldKey>
 
 // Entity field Keys

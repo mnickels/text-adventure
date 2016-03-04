@@ -1,0 +1,96 @@
+% lineTownSquare
+You return to the town square. What will you do?
+@ Visit the merchant | -> lineMerchant
+@ Visit the blacksmith | -> lineBlacksmith
+:if
+	& # p.lvl < 10
+	* @ Wander about the plains | SCRIPT Plains
+:if
+	& # p.lvl > 10
+	& # p.lvl < 20
+	* @ Wander into the caverns | SCRIPT Caverns
+:if
+	& # p.lvl == 20
+	:if
+		& # p.morality >= 0
+		* @ Seek out Nox forces | SCRIPT NoxFight
+		! @ Hunt down royal guards | SCRIPT RGFight
+@ Continue your quest | -> lineContQuest
+% lineMerchant
+Carefree Merchant: "Welcome! how may I help you?"
+% lineMerchOptions
+@ Potion (25C) | -> linePotConfirm
+@ Antidote (40C) | -> lineAntConfirm
+@ Leave | -> lineMerchGoodbye
+% linePotConfirm
+Are you sure you'd like a potion for 25C?
+@ Yes | "Thank you for your purchase!" #p.potions += 1
+@ No | -> lineMerchOptions
+% lineAntConfirm
+Are you sure you'd like an antidote for 50C?
+@ Yes | "Thank you for your purchase!" #p.antidotes += 1
+@ No | -> lineMerchOptions
+%lineMerchGoodbye
+"Thank you! Come again!"
+-> lineTownSquare
+% lineBlacksmith
+Serious Blacksmith: "Welcome."
+% BSOptions
+@ Wooden Sword (100C) | -> lineWoodSwordConfirm
+@ Iron Sword (500C) | -> lineIronSwordConfirm
+:if
+	& #p.morality >= 0
+	* @ The Godsfist (1000C) | -> lineGodsfistConfirm
+	! @ The Unholy Burden (1000C) | -> lineBurdenConfirm
+@ Cardboard Box Armor (100C) | -> lineBoxConfirm
+@ Iron Armor (500C) | -> lineIronArmorConfirm
+:if
+	& #p.morality >= 0
+	* @ Holy Indominablity (1000C) | -> lineHIConfirm
+	! @ The Dreadwyrm's Curse (1000C) | -> lineDCConfirm
+@ Leave | -> lineBSGoodbye
+% lineWoodSwordConfirm
+Are you sure you'd like a wooden sword for 100C?
+@ Yes | "Thank you." #p.equipment.add($woodenSword)
+@ No | -> lineBSOptions
+% lineIronSwordConfirm
+Are you sure you'd like an iron sword for 500C?
+@ Yes | "Thank you." #p.equipment.add($ironSword)
+@ No | -> lineBSOptions
+% lineGodsfistConfirm
+Are you sure you'd like the Godsfist for 1000C?
+@ Yes | "..I believe in you, #p.name. Protect Arccairn." #p.equipment.add($godsfist)
+@ No | -> lineBSOptions
+% lineBurdenConfirm
+Are you sure you'd like the Unholy Burden for 1000C?
+@ Yes | "Rot in hell." #p.equipment.add($unholyBurden)
+@ No | -> lineBSOptions
+% lineBoxConfirm
+Are you sure you'd like cardboard box armor for 100C?
+@ Yes | "You actually paid that much to wear a cardboard box... Heh." #p.equipment.add($cardboardBox)
+@ No | -> lineBSOptions
+% lineIronArmorConfirm
+Are you sure you'd like iron armor for 100C?
+@ Yes | "Thank you." #p.equipment.add($ironArmor)
+@ No | -> lineBSOptions
+% lineHIConfirm
+Are you sure you'd like Holy Indominablity for 1000C?
+@ Yes | "..I believe in you, #p.name. Protect Arccairn." #p.equipment.add($holyI)
+@ No | -> lineBSOptions
+% lineDCConfirm
+Are you sure you'd like the Dreadwyrm's Curse for 1000C?
+@ Yes | "Rot in hell." #p.equipment.add($dCurse)
+@ No | -> lineBSOptions
+% lineBSGoodbye
+"Goodbye."
+-> lineTownSquare
+% lineContQuest
+:if
+	& # p.ch = 1
+	* SCRIPT Ch1
+:if
+	& # p.ch = 2
+	* SCRIPT Ch2
+:if
+	& # p.ch = 3
+	* SCRIPT Ch3
