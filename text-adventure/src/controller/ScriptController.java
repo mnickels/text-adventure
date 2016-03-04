@@ -10,6 +10,7 @@
  */
 package controller;
 
+import model.Script;
 import model.ScriptLoader;
 
 /**
@@ -19,12 +20,49 @@ import model.ScriptLoader;
 public class ScriptController {
 	
 	private final ScriptLoader loader;
+	
+	private Script currentScript;
 
 	/**
 	 * 
 	 */
 	public ScriptController() {
 		loader = new ScriptLoader();
+	}
+	
+	public void runScripts() {
+		Script currentScript = loader.SCRIPTS.get("Intro");
+		int currentLineNumber = 0;
+		while (currentLineNumber != currentScript.lastLine()) {
+			String currentLine = currentScript.nextLine();
+			String[] tokens = currentLine.split(" ");
+			
+			switch (tokens[0]) {
+				case "->":
+					
+				case ":":
+					
+				case "-":
+					
+				case "~":
+					
+				case "*":
+					
+				case "!":
+					
+				case "@":
+					
+				case "$":
+					
+				default:
+					System.out.println(currentLine);
+					currentLineNumber++;
+			}
+		}
+	}
+	
+	public void runScript(Script script) {
+		
 	}
 
 }
