@@ -27,8 +27,14 @@ import model.scriptcomponent.ScriptComponent;
  */
 public class Script {
 	
+	/**
+	 * List of components generated from similar blocks of script text.
+	 */
 	private final List<ScriptComponent> components;
 	
+	/**
+	 * Current component being used.
+	 */
 	private int currentIndex;
 
 	/**
@@ -60,8 +66,7 @@ public class Script {
 			s.close();
 			removeComments(lines);
 
-			Map<Integer, String> lineNumberToLabel = new HashMap<Integer, String>();
-			fillLabels(lines, lineNumberToLabel);
+			Map<Integer, String> lineNumberToLabel = fillLabels(lines);
 			
 			populateComponents(lines, lineNumberToLabel);
 		} catch (FileNotFoundException e) {
@@ -77,30 +82,60 @@ public class Script {
 	/**
 	 * 
 	 */
-	private void fillLabels(List<String> script, Map<Integer, String> theLabels) {
+	private Map<Integer, String> fillLabels(List<String> script) {
+		Map<Integer, String> theLabels = new HashMap<Integer, String>();
 		int currentSize = script.size();
 		for (int i = 0; i < currentSize; i++) {
 			String line = script.get(i);
-			if (line.startsWith(Keyword.LABEL.getKey())) {
-				// This line is a Label
+			if (line.startsWith(Keyword.LABEL.getKey())) { //Check if line is a label
 				String[] words = line.split(" ");
 				theLabels.put(i, words[1]);
-				components.remove(i--);
+				script.remove(i--); //Removes the label from the lines of script text
 				currentSize--;
 			}
 		}
+		return theLabels;
 	}
 	
 	private void populateComponents(List<String> lines, Map<Integer, String> labels) {
-		String label = null;
+		
+//		if (labels.containsKey(i)) {
+//			component.addLabel(labels.get(i));
+//		}
+		
 		List<String> grouped = new ArrayList<String>();
 		grouped.add(lines.get(0));
+		
 		for (int i = 1; i < lines.size(); i++) {
-			if (lines.get(i).startsWith(grouped.get(i).split(" ")[0])) {
+			if (lines.get(i).startsWith(grouped.get(grouped.size() - 1).split(" ")[0])) {
 				grouped.add(lines.get(i));
 			} else {
 				switch (grouped.get(grouped.size() - 1).split(" ")[0]) {
-				
+					case Keyword.COMMENT.getKey():
+						System.out.println("You're an idiot!");
+						break;
+					case Keyword.GOTO.getKey():
+						break;
+					case Keyword.IF.getKey():
+						break;
+					case Keyword.CONDITION_OR.getKey():
+						break;
+					case Keyword.CONDITION_AND.getKey():
+						break;
+					case Keyword.BRANCH_TRUE.getKey():
+						break;
+					case Keyword.BRANCH_FALSE.getKey():
+						break;
+					case Keyword.INPUT_BUTTON.getKey():
+						break;
+					case Keyword.REFERENCE_GLOBAL.getKey():
+						break;
+					case Keyword.REFERENCE_LOCAL.getKey():
+						break;
+					case Keyword.LABEL.getKey():
+						System.out.println("You're an idiot!");
+						break;
+					default:
 				}
 			}
 		}

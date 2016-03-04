@@ -28,7 +28,8 @@ public class GUI extends JFrame {
 	private static final String TITLE = "Steampunk Text-Based Adventure Game";
 	
 	public GUI() {
-		
+		super(TITLE);
+		this.setVisible(true);
 	}
 	
 	private class DisplayedText extends JScrollPane {

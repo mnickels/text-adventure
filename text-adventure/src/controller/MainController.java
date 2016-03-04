@@ -10,6 +10,8 @@
  */
 package controller;
 
+import view.GUI;
+
 /**
  * @author Mike
  *
@@ -22,7 +24,7 @@ public class MainController implements Runnable {
 	 * 
 	 */
 	public MainController() {
-		scripts = new ScriptController();
+		//scripts = new ScriptController();
 	}
 
 	/**
@@ -34,7 +36,8 @@ public class MainController implements Runnable {
 
 	@Override
 	public void run() {
-		scripts.runScripts();
+		GUI view = new GUI();
+		//scripts.runScripts();
 	}
 
 }
